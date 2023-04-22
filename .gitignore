@@ -4,3 +4,4 @@
 variables.private.tf
 .terraform.tfstate.lock.info
 .env
+flight-info-aggregate-lambda.zip
