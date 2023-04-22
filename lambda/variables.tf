@@ -1,6 +1,6 @@
 variable "cron_schedule" {
   type    = string
-  default = "cron(* * * * ? *)"
+  default = "rate(1 hour)"
 }
 
 variable "lambda_seg_group_id" {}
