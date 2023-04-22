@@ -11,26 +11,40 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-resource "aws_iam_policy" "function_logging_policy" {
-  name = "function-logging-policy"
+resource "aws_iam_policy" "lambda_policies" {
+  name = "lambda-policies"
   policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
       {
         Action : [
+          "logs:CreateLogGroup",
           "logs:CreateLogStream",
-          "logs:PutLogEvents"
+          "logs:PutLogEvents",
         ],
         Effect : "Allow",
         Resource : "arn:aws:logs:*:*:*"
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:CreateNetworkInterface",
+          "ec2:DeleteNetworkInterface",
+          "ec2:DescribeInstances",
+          "ec2:AttachNetworkInterface",
+          "ec2:AssignPrivateIpAddresses",
+          "ec2:UnassignPrivateIpAddresses"
+        ],
+        "Resource" : "*"
       }
     ]
   })
 }
 
-resource "aws_iam_role_policy_attachment" "function_logging_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "lambda_policies_attachment" {
   role       = aws_iam_role.iam_for_lambda.id
-  policy_arn = aws_iam_policy.function_logging_policy.arn
+  policy_arn = aws_iam_policy.lambda_policies.arn
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
