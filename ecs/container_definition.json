@@ -1,0 +1,32 @@
+[
+  {
+    "name": "task_def_flight_booking",
+    "image": "${ECR_IMAGE}",
+    "essential": true,
+    "secrets": [
+      {
+        "name": "DB_PASSWORD",
+        "valueFrom": "arn:aws:ssm:eu-west-1:769832282011:parameter/flight-booking/dbpassw"
+      }
+    ],
+    "environment": [
+      { "name": "DB_HOST", "value": "${DB_URL}" },
+      { "name": "DB_USER", "value": "${DB_USER}" },
+      { "name": "DATABASE", "value": "${DB_NAME}" }
+    ],
+    "portMappings": [
+      {
+        "containerPort": 3000,
+        "hostPort": 3000
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${CLOUDWATCH_GROUP}",
+        "awslogs-region": "eu-west-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }
+]

@@ -1,0 +1,15 @@
+variable "alb_ecs_target_group_arn" {}
+variable "fargate_pool_sg_id" {}
+
+variable "private_ecs_subnet_id" {
+  type = object({
+    a = string
+    b = string
+    c = string
+  })
+}
+
+variable "db_username" {}
+variable "db_name" {}
+
+variable "db_url" {}
