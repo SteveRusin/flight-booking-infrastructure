@@ -56,3 +56,7 @@ module "ecs" {
   db_url                   = module.db.db_url
   db_username              = module.db.db_username
 }
+
+module "frontend" {
+  source = "./frontend"
+}
