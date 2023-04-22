@@ -9,6 +9,7 @@ resource "aws_subnet" "private_db_a" {
   }
 }
 
+# todo rename subnets
 resource "aws_subnet" "private_db_b" {
   vpc_id                  = aws_vpc.flight-booking.id
   availability_zone       = "eu-west-1b"
