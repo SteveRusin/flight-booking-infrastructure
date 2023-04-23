@@ -1,3 +1,5 @@
+#todo add cloudfront distribution once ready for prod
+
 resource "aws_s3_bucket" "frontend_assets" {
   bucket        = "flight-booking-fe"
   force_destroy = true
