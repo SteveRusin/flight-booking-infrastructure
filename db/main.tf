@@ -1,6 +1,7 @@
 resource "aws_db_instance" "flight-booking" {
-  allocated_storage      = 20
-#  identifier             = "flight_booking_database"
+  allocated_storage = 20
+  # uncomment when deploying
+  #  identifier             = "flight_booking_database"
   db_name                = "flight_booking"
   engine                 = var.db_engine
   engine_version         = var.db_engine_version

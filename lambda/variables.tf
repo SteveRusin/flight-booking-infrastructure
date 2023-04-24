@@ -5,7 +5,7 @@ variable "cron_schedule" {
 variable "lambda_seg_group_id" {
   type = string
 }
-variable "lambda_access_subnets" {
+variable "private_lambda_subnet_id" {
   type = object({
     a = string
     b = string
@@ -23,5 +23,9 @@ variable "db_name" {
   type = string
 }
 variable "db_url" {
+  type = string
+}
+
+variable "db_password" {
   type = string
 }

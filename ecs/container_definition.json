@@ -6,7 +6,7 @@
     "secrets": [
       {
         "name": "DB_PASSWORD",
-        "valueFrom": "${DB_PASSWORD_SSM_ARN}"
+        "valueFrom": "arn:aws:ssm:eu-west-1:769832282011:parameter/flight-booking/dbpassw"
       }
     ],
     "environment": [

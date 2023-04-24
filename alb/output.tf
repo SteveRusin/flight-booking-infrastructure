@@ -1,5 +1,5 @@
 output "lb_dns_name" {
-  value = aws_lb.flight_booking_alb.name
+  value = aws_lb.flight_booking_alb.dns_name
 }
 
 output "lb_arn" {

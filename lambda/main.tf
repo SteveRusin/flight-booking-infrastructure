@@ -19,14 +19,14 @@ resource "aws_lambda_function" "flight-info-aggregate-lambda" {
 
   vpc_config {
     security_group_ids = [var.lambda_seg_group_id]
-    subnet_ids         = [var.lambda_access_subnets.a, var.lambda_access_subnets.b, var.lambda_access_subnets.c]
+    subnet_ids         = [var.private_lambda_subnet_id.a, var.private_lambda_subnet_id.b, var.private_lambda_subnet_id.c]
   }
 
   environment {
     variables = {
       DB_HOST     = var.db_url
       DB_PORT     = 5432
-      DB_PASSWORD = data.aws_ssm_parameter.db_password.value
+      DB_PASSWORD = var.db_password
       DATABASE    = var.db_name
       DB_USER     = var.db_username
       PROVIDERS   = var.datasource_providers
@@ -34,6 +34,3 @@ resource "aws_lambda_function" "flight-info-aggregate-lambda" {
   }
 }
 
-data "aws_ssm_parameter" "db_password" {
-  name = "/flight-booking/dbpassw"
-}

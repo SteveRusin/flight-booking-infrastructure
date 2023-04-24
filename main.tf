@@ -1,12 +1,13 @@
 module "lambda" {
   source = "./lambda"
 
-  lambda_seg_group_id   = module.security_groups.lambda_seg_group_id
-  lambda_access_subnets = module.vpc.private_db_subnet_id
-  db_name               = module.db.db_name
-  db_url                = module.db.db_url
-  db_username           = module.db.db_username
-  datasource_providers  = var.datasource_providers
+  lambda_seg_group_id      = module.security_groups.lambda_seg_group_id
+  private_lambda_subnet_id = module.vpc.private_lambda_subnet_id
+  db_name                  = module.db.db_name
+  db_url                   = module.db.db_url
+  db_username              = module.db.db_username
+  db_password              = module.db.db_password
+  datasource_providers     = var.datasource_providers
 }
 
 module "vpc" {
@@ -44,7 +45,8 @@ module "vpc_endpoint" {
 
   vpc_id                    = module.vpc.vpc_id
   vpc_endpoint_seg_group_id = module.security_groups.vpc_endpoint_sg_id
-  private_ecs_subnet_id     = module.vpc.private_db_subnet_id
+  private_ecs_subnet_id     = module.vpc.private_ecs_subnet_id
+  private_rt_id             = module.vpc.private_rt_id
 }
 
 module "ecs" {
@@ -52,7 +54,7 @@ module "ecs" {
 
   alb_ecs_target_group_arn = module.alb.alb_ecs_target_group_arn
   fargate_pool_sg_id       = module.security_groups.fargate_pool_sg_id
-  private_ecs_subnet_id    = module.vpc.private_db_subnet_id
+  private_ecs_subnet_id    = module.vpc.private_ecs_subnet_id
   db_name                  = module.db.db_name
   db_url                   = module.db.db_url
   db_username              = module.db.db_username

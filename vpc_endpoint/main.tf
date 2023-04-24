@@ -1,3 +1,12 @@
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id       = var.vpc_id
+  service_name = "com.amazonaws.eu-west-1.s3"
+
+  vpc_endpoint_type   = "Gateway"
+  route_table_ids     = [var.private_rt_id]
+}
+
+
 resource "aws_vpc_endpoint" "ecr_dkr" {
   vpc_id       = var.vpc_id
   service_name = "com.amazonaws.eu-west-1.ecr.dkr"

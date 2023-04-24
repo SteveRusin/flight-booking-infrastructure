@@ -11,3 +11,7 @@ variable "private_ecs_subnet_id" {
     c = string
   })
 }
+
+variable "private_rt_id" { 
+  type = string
+}

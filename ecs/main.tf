@@ -29,7 +29,6 @@ data "template_file" "container_definitions" {
     "DB_USER"          = var.db_username
     "DB_NAME"          = var.db_name
     "CLOUDWATCH_GROUP" = aws_cloudwatch_log_group.flight-booking-ecs-logs.name
-    "DB_PASSWORD_SSM_ARN" = data.aws_ssm_parameter.db_password.arn
   }
 }
 
@@ -61,7 +60,4 @@ resource "aws_ecs_service" "flight-booking" {
 
 output "template_file" {
   value = data.template_file.container_definitions.rendered
-}
-data "aws_ssm_parameter" "db_password" {
-  name = "flight-booking/dbpassw"
 }

@@ -10,3 +10,7 @@ output "db_name" {
   value = aws_db_instance.flight-booking.db_name
 }
 
+
+output "db_password" {
+  value = random_password.db_pwd.result
+}

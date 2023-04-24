@@ -12,7 +12,7 @@ This repo contains terraform modules for flight booking project infrastructure
 1. Clone the project
 1. Login to aws using aws cli.
 1. If you using non default aws account refer to [Using no default aws account](#using-no-default-aws-account) step before proceeding
-1. Copy and rename `variables.private.example.tf` -> `variables.private.tf` and provide variable values
+1. Copy and rename `variables.private.example` -> `variables.private.tf` and provide variable values
 1. Run `terraform init`
 1. Define infrastructure and apply using `terraform plan/apply` commands
 
