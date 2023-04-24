@@ -6,6 +6,7 @@ module "lambda" {
   db_name               = module.db.db_name
   db_url                = module.db.db_url
   db_username           = module.db.db_username
+  datasource_providers  = var.datasource_providers
 }
 
 module "vpc" {
@@ -55,8 +56,14 @@ module "ecs" {
   db_name                  = module.db.db_name
   db_url                   = module.db.db_url
   db_username              = module.db.db_username
+  ecs_initial_image        = var.ecs_initial_image
 }
 
 module "frontend" {
   source = "./frontend"
+}
+
+
+output "alb_dns_name" {
+  value = module.alb.lb_dns_name
 }

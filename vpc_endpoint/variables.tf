@@ -1,5 +1,9 @@
-variable "vpc_id" {}
-variable "vpc_endpoint_seg_group_id" {}
+variable "vpc_id" {
+  type = string
+}
+variable "vpc_endpoint_seg_group_id" {
+  type = string
+}
 variable "private_ecs_subnet_id" {
   type = object({
     a = string

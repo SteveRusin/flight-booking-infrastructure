@@ -9,7 +9,6 @@ resource "aws_subnet" "private_a" {
   }
 }
 
-# todo rename subnets
 resource "aws_subnet" "private_b" {
   vpc_id                  = aws_vpc.flight-booking.id
   availability_zone       = "eu-west-1b"
@@ -39,15 +38,15 @@ resource "aws_db_subnet_group" "flight-booking" {
 
 resource "aws_route_table_association" "a" {
   subnet_id = aws_subnet.private_a.id
-  route_table_id = aws_route_table.private_rt_az1.id
+  route_table_id = aws_route_table.private_rt_a.id
 }
 
 resource "aws_route_table_association" "b" {
   subnet_id = aws_subnet.private_b.id
-  route_table_id = aws_route_table.private_rt_az2.id
+  route_table_id = aws_route_table.private_rt_b.id
 }
 
 resource "aws_route_table_association" "c" {
   subnet_id = aws_subnet.private_c.id
-  route_table_id = aws_route_table.private_rt_az3.id
+  route_table_id = aws_route_table.private_rt_c.id
 }

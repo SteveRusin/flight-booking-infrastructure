@@ -6,32 +6,32 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-resource "aws_eip" "eip_for_nat_gw_az1" {
+resource "aws_eip" "eip_for_nat_gw_a" {
   vpc = true
 
   tags = {
-    Name = "eip_for_nat_gw_az1"
+    Name = "eip_for_nat_gw_a"
   }
 }
 
-resource "aws_eip" "eip_for_nat_gw_az2" {
+resource "aws_eip" "eip_for_nat_gw_b" {
   vpc = true
 
   tags = {
-    Name = "eip_for_nat_gw_az2"
+    Name = "eip_for_nat_gw_b"
   }
 }
 
-resource "aws_eip" "eip_for_nat_gw_az3" {
+resource "aws_eip" "eip_for_nat_gw_c" {
   vpc = true
 
   tags = {
-    Name = "eip_for_nat_gw_az3"
+    Name = "eip_for_nat_gw_c"
   }
 }
 
-resource "aws_nat_gateway" "nat_gw_az1" {
-  allocation_id     = aws_eip.eip_for_nat_gw_az1.id
+resource "aws_nat_gateway" "nat_gw_a" {
+  allocation_id     = aws_eip.eip_for_nat_gw_a.id
   subnet_id         = aws_subnet.public_a.id
   connectivity_type = "public"
 
@@ -42,8 +42,8 @@ resource "aws_nat_gateway" "nat_gw_az1" {
   depends_on = [aws_internet_gateway.gw]
 }
 
-resource "aws_nat_gateway" "nat_gw_az2" {
-  allocation_id     = aws_eip.eip_for_nat_gw_az2.id
+resource "aws_nat_gateway" "nat_gw_b" {
+  allocation_id     = aws_eip.eip_for_nat_gw_b.id
   subnet_id         = aws_subnet.public_b.id
   connectivity_type = "public"
 
@@ -54,8 +54,8 @@ resource "aws_nat_gateway" "nat_gw_az2" {
   depends_on = [aws_internet_gateway.gw]
 }
 
-resource "aws_nat_gateway" "nat_gw_az3" {
-  allocation_id     = aws_eip.eip_for_nat_gw_az3.id
+resource "aws_nat_gateway" "nat_gw_c" {
+  allocation_id     = aws_eip.eip_for_nat_gw_c.id
   subnet_id         = aws_subnet.public_b.id
   connectivity_type = "public"
 

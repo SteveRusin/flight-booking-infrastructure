@@ -1,5 +1,9 @@
-variable "alb_ecs_target_group_arn" {}
-variable "fargate_pool_sg_id" {}
+variable "alb_ecs_target_group_arn" {
+  type = string
+}
+variable "fargate_pool_sg_id" {
+  type = string
+}
 
 variable "private_ecs_subnet_id" {
   type = object({
@@ -9,7 +13,15 @@ variable "private_ecs_subnet_id" {
   })
 }
 
-variable "db_username" {}
-variable "db_name" {}
-
-variable "db_url" {}
+variable "db_username" {
+  type = string
+}
+variable "db_name" {
+  type = string
+}
+variable "db_url" {
+  type = string
+}
+variable "ecs_initial_image" {
+  type = string
+}

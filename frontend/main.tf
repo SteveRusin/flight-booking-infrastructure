@@ -48,4 +48,9 @@ resource "aws_s3_bucket_policy" "frontend_assets_policy" {
     "${path.module}/s3-policy.json",
     { bucket = aws_s3_bucket.frontend_assets.bucket }
   )
+
+  depends_on = [
+    # make sure access right allow to update policy
+    aws_s3_bucket_public_access_block.frontend
+  ]
 }
