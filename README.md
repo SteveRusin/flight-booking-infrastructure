@@ -29,7 +29,7 @@ This repo contains terraform modules for flight booking project infrastructure
 - Tests for infrastructure is missing
 
 ## Architecture diagram
-- todo
+[Flight booking architecture diagram](./flight_booking.architecture.png)
 
 ## Module structure
 
